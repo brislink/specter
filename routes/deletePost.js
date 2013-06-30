@@ -8,8 +8,10 @@ exports.getPostToDelete = function(req,res){
     var id = req.params.id;
     var url = constants.queries.postType()+id;
     request(url,function(error,response,body){
+        var parsed = JSON.parse(body)
         if(error)return res.send(404);
-        return res.render(constants.views.deletePost,buildResponse(JSON.parse(body)));
+        if(parsed.error) return res.send(404);
+        return res.render(constants.views.deletePost,buildResponse(parsed));
     });
 };
 
