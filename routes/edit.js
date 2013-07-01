@@ -9,8 +9,8 @@ exports.editPost = function(req,res){
     var id = req.params.id;
     var url = constants.queries.postType() + id;
      request(url,function(error,response,body){
-        if(!body) return res.send(404);
         var parsed = JSON.parse(body);
+        if(!parsed._source) return res.send(404);
         var html = removeFigureCaption( parsed._source.postHtml);
         var markdownText = getMarkdownFromHtml(html);       
         return res.render(constants.views.createPost,buildData(markdownText,parsed));
