@@ -1,111 +1,82 @@
 <!DOCTYPE html>
-<html>
-    
-    <head>
-        {{^title}}<title>create new post</title>{{/title}}
-        {{#title}} <title>Update {{title}}</title>{{/title}}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-        <link href="/styles/abstract.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css"
-		href="/styles/jquery.tagsinput.css" />
-    </head>
-    
-    <body>
-        <div class="container-fluid">
-           
-            <div class="row-fluid" id="subNav">
-                <div class="span12">
-                    <ul class="muted inline unstyled pull-right subNav">
-                        <li><a href="#" id="createNew" data-bind="click:newDraft">NEW</a>
-                        </li>
-                        <li><a href="#" id="renderSavedDrafts" data-bind="click : showDrafts">DRAFTS</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="span12">
-<span id="saveStatus" style="margin-top:10px;" class="text-success hiddenElement saveStatus">Draft saved</span>
-
-                </div>
-            </div>
-            <div class="row-fluid" id="editContainer">
-                <div class="span12" style="display:none;" data-bind="visible:true">
-                    <input type="text" id="title" data-bind="visible:showTitle(),click:editTitle,event:{focusout:saveAndNotify}" class="span12" placeholder="The title of the draft goes here" autocomplete="off" value="{{title}}">
-                    <textarea class="span12" id="editArea" data-bind="visible:showEditor()" placeholder="The body of your draft. You can use markdown."></textarea>
-					<ul class="inline editMenus" id ="saveAndPreview">
-					<li><a href="#" data-bind="click: saveAndNotify">save</a></li>
-					<li><a href="#" data-bind="click : showPreview"> preview</a></li>					
-					</ul>	
-                </div>
-            </div>
-            <div class="row-fluid hiddenElement" id="previewContainer">
-                <div class="span12">
-                    <div  id="previewPane">{{{post}}}</div>
-					
-					                    <ul class="unstyled inline muted previewFeedback">
-                        <li><a href="#" data-bind="click : hidePreview">edit</a></li>
-                        <li id="wordCount"></li>
-                        <li><a href="#" id="rawHtml" data-bind="visible:raw,click: rawHtml">raw</a><a href="#" id="plain" data-bind="visible:!raw(),click:plain">pretty</a>
-                        </li>
-                        
-                    </ul>
-					<input type="text" id="tags" value="{{tags}}">
-					<input class="span4" type="password" placeholder="Enter secret to publish" data-bind="value:secret,click:editingSecret,valueUpdate:'afterkeydown' " id="secret" > 
-                <p>
-                    {{^post}}
-                    <button class="btn btn-success" data-bind="enable:hasProvidedSecret,click:publishArticle">publish</button>
-                    {{/post}}
-                    {{#post}}
-                    <button class="btn btn-success" data-bind="enable:hasProvidedSecret,click:updateArticle" data-postedby="{{postedBy}}" data-id = {{id}} data-postedOn = "{{postedOn}}" id="update">Update</button>
-                    {{/post}}
-                    </p>    
-                </div>
-            </div>
+  <html>
+  <head>
+    {{^title}}<title>create new post</title>{{/title}}
+    {{#title}} <title>Update {{title}}</title>{{/title}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="/styles/abstract.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles/jquery.tagsinput.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid" id="subNav">
+        <div class="span12">
+          <ul class="muted inline unstyled pull-right subNav">
+            <li><a href="#" id="createNew" data-bind="click:newDraft">NEW</a></li>
+            <li><a href="#" id="renderSavedDrafts" data-bind="click : showDrafts">DRAFTS</a></li>
+          </ul>
         </div>
-        <div class="container-fluid hiddenElement" id="drafts">
-            <div class="row-fluid">
-                <div class="span12">
-                    
-                    <ol id="draftList" data-bind="foreach:drafts">
-                        <li data-bind="attr:{'data-title':title},click: $parent.editDraft" class='draftListItems'>
-                            <div>
-<span data-bind="text:title"></span> 
-<span class='muted draftList' data-bind="text:'(' +date+')'"> </span>
-
-                            </div>
-                            <div class='muted draftList'>
-<span data-bind="text:count"></span>
-
-<span data-bind="if:plural">words</span>
-
-<span data-bind="if:!plural">word</span>
-
-<a href='#' class='text-error' data-bind="click: $parent.deleteDraft">Delete</a>
-
-                            </div>
-                        </li>
-                        <hr>
-                    </ol>
-                    
-                </div>
-            </div>
+      </div>
+      <div class="row-fluid">
+          <div class="span12">
+          <span id="saveStatus" style="margin-top:10px;" class="text-success hiddenElement saveStatus">Draft saved</span>
         </div>
-	
-        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
-       
- <script src="/javascripts/Abstract/index.min.js"></script>
-        <script type="text/javascript">
-			$(function(){		
-				
-				
-		
-				
-			});
-		</script>
-    </body>
-
+      </div>
+      <div class="row-fluid" id="editContainer">
+        <div class="span12" style="display:none;" data-bind="visible:true">
+          <input type="text" id="title" data-bind="visible:showTitle(),click:editTitle,event:{focusout:saveAndNotify}" class="span12" placeholder="The title of the draft goes here" autocomplete="off" value="{{title}}">
+          <textarea class="span12" id="editArea" data-bind="visible:showEditor()" placeholder="The body of your draft. You can use markdown."></textarea>
+          <ul class="inline editMenus" id ="saveAndPreview">
+            <li><a href="#" data-bind="click: saveAndNotify">save</a></li>
+            <li><a href="#" data-bind="click : showPreview"> preview</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row-fluid hiddenElement" id="previewContainer">
+        <div class="span12">
+          <div id="previewPane">{{{post}}}</div>
+          <ul class="unstyled inline muted previewFeedback">
+            <li><a href="#" data-bind="click : hidePreview">edit</a></li>
+            <li id="wordCount"></li>
+            <li><a href="#" id="rawHtml" data-bind="visible:raw,click: rawHtml">raw</a><a href="#" id="plain" data-bind="visible:!raw(),click:plain">pretty</a></li>
+          </ul>
+          <input type="text" id="tags" value="{{tags}}">
+          <input class="span4" type="password" placeholder="Enter secret to publish" data-bind="value:secret,click:editingSecret,valueUpdate:'afterkeydown' " id="secret" >
+          <p>
+            {{^post}}
+            <button class="btn btn-success" data-bind="enable:hasProvidedSecret,click:publishArticle">publish</button>
+            {{/post}}
+            {{#post}}
+            <button class="btn btn-success" data-bind="enable:hasProvidedSecret,click:updateArticle" data-postedby="{{postedBy}}" data-id = {{id}} data-postedOn = "{{postedOn}}" id="update">Update</button>
+            {{/post}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid hiddenElement" id="drafts">
+      <div class="row-fluid">
+        <div class="span12">
+          <ol id="draftList" data-bind="foreach:drafts">
+            <li data-bind="attr:{'data-title':title},click: $parent.editDraft" class='draftListItems'>
+              <div>
+                <span data-bind="text:title"></span>
+                <span class='muted draftList' data-bind="text:'(' +date+')'"> </span>
+              </div>
+              <div class='muted draftList'>
+                <span data-bind="text:count"></span>
+                <span data-bind="if:plural">words</span>
+                <span data-bind="if:!plural">word</span>
+                <a href='#' class='text-error' data-bind="click: $parent.deleteDraft">Delete</a>
+              </div>
+            </li>
+            <hr>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script src="/javascripts/Abstract/index.min.js"></script>
+  </body>
 </html>

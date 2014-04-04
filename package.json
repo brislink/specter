@@ -1,26 +1,22 @@
 {
-"name": "specter",
-"version": "0.0.1",
-"private": true,
-"scripts": {
-"start": "node server.js"
-},
-"dependencies": {
-
-"express": "3.2.5",
-"mustache": "*",
-"request" : "*",
-"buildify":"*",
-"cheerio" : "*",
-"slugs" : "*",
-"consolidate":"*",
-"feed" : "0.2.3"	
-},
-
-"engines":{
-		
-"node" : "0.8.16",
-"npm" : "1.2.14"				
-}
-
+  "name": "specter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "3.2.5",
+    "mustache": "*",
+    "request": "*",
+    "buildify": "*",
+    "cheerio": "*",
+    "slugs": "*",
+    "consolidate": "*",
+    "feed": "0.2.3"
+  },
+  "engines": {
+    "node": "0.8.16",
+    "npm": "1.2.14"
+  }
 }
