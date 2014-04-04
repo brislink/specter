@@ -1,66 +1,59 @@
- [contenteditable="true"]{outline:none;}
+ [contenteditable="true"] {outline: none;}
 
-#editContainer,#drafts,#subNav{
+#editContainer,#drafts,#subNav {
     margin-top: 20px;
-    
 }
 
-#title{
+#title {
     margin-bottom: 20px;
-    border:none;
+    border: none;
     border-bottom: 1px solid whitesmoke;
-    font-weight:bold;
-    box-shadow:none;
-    outline:none;
-    font-size:17px;
+    font-weight: bold;
+    box-shadow: none;
+    outline: none;
+    font-size: 17px;
 }
 
-body,textarea,li{
+body, textarea,li {
     font-size: 17px;
     line-height: 25px;
 }
 
-#previewContainer{
-    display:none;
+#previewContainer {
+    display: none;
 }
 
-.previewFeedBack li,.editMenus li{
-    
+.previewFeedBack li,.editMenus li {
     font-size: 14px;
 }
 
-.hiddenElement{
-    
-    display:none;
+.hiddenElement {
+    display: none;
 }
 
-.subNav,.draftList,.saveStatus,.subNav li{
-    
-    letter-spacing:2px;
+.subNav,.draftList,.saveStatus,.subNav li {
+    letter-spacing: 2px;
     font-size: 12px;
-    
+
 }
 
-.draftListItems{
-    
+.draftListItems {
     cursor: pointer;
-       
 }
 
-blockquote p {
-margin-bottom: 5px;
-font-size: 17px;
-line-height: 25px;
+blockquote p  {
+    margin-bottom: 5px;
+    font-size: 17px;
+    line-height: 25px;
 }
 
-textarea,textarea:focus{
-    
-    border:none;
-    box-shadow:none;
+textarea, textarea: focus {
+    border: none;
+    box-shadow: none;
     resize: none;
-    outline:none;
+    outline: none;
 }
 
-li{
-	margin: 0 0 5px 0 ;
+li {
+	margin: 0 0 5px 0;
 }

@@ -1,89 +1,77 @@
 <!DOCTYPE html>
-<html>
-  <head>
+  <html>
+    <head>
     <title>{{websiteName}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="/styles/globalStyles.css">
-
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/globalStyles.css">
   </head>
-
-  <body>
-
+    <body>
       <div class="continer-fluid">
-		  <div class="row-fluid">
-			 <ul class="inline" style="text-align:center">
-				 <li><h1><a href="/" style="text-decoration:none;">Specter</a></h1><hr></li>
-
-			  </ul>
-		  </div>
-          <div class="row-fluid">
-              <input type="text" placeholder="Search" class="span12" id="searchBox" data-bind="value:searchText,valueUpdate:'afterkeydown',event:{'keydown':keydown}">
-                        </div>
-          <div class="row-fluid">
-            <div class="span10 offset1">
-              <ul class="unstyled" id="results" style="display:none;" data-bind="visible:true">
-                   <!-- ko foreach: searchResults -->
-                  <li><p><span><a data-bind="attr:{href:'/'+_id},text:fields.title"></a></span> <span class="muted" style="font-size:17px;" data-bind="text:fields.wordCount +' '+ 'words'"></span></p></li>
-                  <!-- /ko -->
-              </ul>
-</div>
-          </div>
+        <div class="row-fluid">
+          <ul class="inline" style="text-align:center">
+          <li><h1><a href="/" style="text-decoration:none;">Specter</a></h1><hr></li>
+        </ul>
       </div>
-	  <hr>
+        <div class="row-fluid">
+        <input type="text" placeholder="Search" class="span12" id="searchBox" data-bind="value:searchText,valueUpdate:'afterkeydown',event:{'keydown':keydown}">
+      </div>
+        <div class="row-fluid">
+          <div class="span10 offset1">
+            <ul class="unstyled" id="results" style="display:none;" data-bind="visible:true">
+            <!-- ko foreach: searchResults -->
+            <li><p><span><a data-bind="attr:{href:'/'+_id},text:fields.title"></a></span> <span class="muted" style="font-size:17px;" data-bind="text:fields.wordCount +' '+ 'words'"></span></p></li>
+            <!-- /ko -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr>
       <div class="container-fluid">
-      <div class="row-fluid">
-			  <div class="span12">
-        {{#hits.0}}
-				  <p class="lead" style="text-align:center;">Search results for "{{query}}"<p>
-        {{/hits.0}}
-              
-              {{^hits}}
-              <p class="lead" style="text-align:center;">No results found for "{{query}}"<p>
-              {{/hits}}      
-			  </div>
-		  </div>
-          {{#hits}}
-
-          <div class="row-fluid">
-              <div class="offset2 span9">
-				  
-                 <h1 class="postHeading"><a href="/{{_id}}">{{fields.title}}</a></h1> <ul class="muted inline" ><li>{{fields.wordCount}} words</li> <li>{{fields.postedOn}}</li></ul><div>{{{fields.postHtml}}}</div><hr>
-
-
-
-              </div>
-          </div>
-
+        <div class="row-fluid">
+          <div class="span12">
+          {{#hits.0}}
+          <p class="lead" style="text-align:center;">Search results for "{{query}}"<p>
+          {{/hits.0}}
+          {{^hits}}
+          <p class="lead" style="text-align:center;">No results found for "{{query}}"<p>
           {{/hits}}
-		  <ul class="pager">
-			  {{#hasPrevious}}
-			  {{^isFirstPage}}
-  				<li><a href="/search?q={{query}}&page={{hasPrevious}}">Previous</a></li>
-			  {{/isFirstPage}}
-			  {{/hasPrevious}}
-			   {{^hasPrevious}}
-  				<li><span class="disabled">Previous</span></li>
-			  {{/hasPrevious}}
-			  {{#isFirstPage}}
-  				<li><a href="/search?q={{query}}&page=1">Previous</a></li>
-			  {{/isFirstPage}}
-			  {{#hasNext}}
-  				<li><a href="/search?q={{query}}&page={{hasNext}}">Next</a></li>
-			  {{/hasNext}}
-			  {{^hasNext}}
-  				<li><span class="disabled">Next</span></li>
-			  {{/hasNext}}
-		  		</ul>
+        </div>
       </div>
-	  <hr>
-     <ul class="pull-right inline">
-      <li><a href="/feed/rss">rss</a>
-      <li><a href="/feed/atom">atom</a>
+      {{#hits}}
+        <div class="row-fluid">
+          <div class="offset2 span9">
+          <h1 class="postHeading"><a href="/{{_id}}">{{fields.title}}</a></h1> <ul class="muted inline" ><li>{{fields.wordCount}} words</li> <li>{{fields.postedOn}}</li></ul><div>{{{fields.postHtml}}}</div><hr>
+    </div>
+  </div>
+  {{/hits}}
+    <ul class="pager">
+      {{#hasPrevious}}
+      {{^isFirstPage}}
+      <li><a href="/search?q={{query}}&page={{hasPrevious}}">Previous</a></li>
+      {{/isFirstPage}}
+      {{/hasPrevious}}
+      {{^hasPrevious}}
+      <li><span class="disabled">Previous</span></li>
+      {{/hasPrevious}}
+      {{#isFirstPage}}
+      <li><a href="/search?q={{query}}&page=1">Previous</a></li>
+      {{/isFirstPage}}
+      {{#hasNext}}
+      <li><a href="/search?q={{query}}&page={{hasNext}}">Next</a></li>
+      {{/hasNext}}
+      {{^hasNext}}
+      <li><span class="disabled">Next</span></li>
+      {{/hasNext}}
     </ul>
-      <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-      <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
-      <script type="text/javascript" src="/javascripts/search.min.js"></script>
-
+  </div>
+  <hr>
+    <ul class="pull-right inline">
+      <li><a href="/feed/rss">rss</a></li>
+      <li><a href="/feed/atom">atom</a></li>
+    </ul>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="/javascripts/search.min.js"></script>
   </body>
 </html>
