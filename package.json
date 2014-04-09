@@ -10,7 +10,7 @@
     "mustache": "*",
     "request": "*",
     "buildify": "*",
-    "cheerio": "*",
+    "cheerio": "0.14.0",
     "slugs": "*",
     "consolidate": "*",
     "feed": "0.2.3"
