@@ -42,7 +42,7 @@ All right so you have installed specter and it is running. What next ?  Here is 
 
 
 
-#Creating contributors in specter
+# Creating contributors in specter
 
 
 Specter has no concept of sessions. The operations in specter are controlled through urls which have to edited manually. To provide security specter maintains a contributors, `\specter\constants\contributors.js` , file that defines all the users who are authorized to perform actions on specter. To add another contributor all you need to do is edit the contributors file and add a 
